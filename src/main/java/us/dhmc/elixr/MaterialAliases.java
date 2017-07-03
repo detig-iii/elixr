@@ -1,6 +1,8 @@
 package us.dhmc.elixr;
 
+import java.io.BufferedReader;
 import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -38,7 +40,8 @@ public class MaterialAliases {
 		InputStream defConfigStream = this.getClass().getResourceAsStream("/items.yml");
 	    if (defConfigStream != null){
 	    	System.out.println("Elixr: Loaded items directory");
-	    	items = YamlConfiguration.loadConfiguration(defConfigStream);
+	    	BufferedReader reader = new BufferedReader(new InputStreamReader(defConfigStream));
+	    	items = YamlConfiguration.loadConfiguration(reader);
 	    }
 	    
 	    if( items != null ){

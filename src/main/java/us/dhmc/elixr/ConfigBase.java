@@ -1,10 +1,12 @@
 package us.dhmc.elixr;
 
+import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.InputStreamReader;
 
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
@@ -70,7 +72,8 @@ public class ConfigBase {
 			// Look for defaults in the jar
 		    InputStream defConfigStream = plugin.getResource(default_folder+filename+".yml");
 		    if (defConfigStream != null){
-		        return YamlConfiguration.loadConfiguration(defConfigStream);
+		    	BufferedReader reader = new BufferedReader(new InputStreamReader(defConfigStream));
+		        return YamlConfiguration.loadConfiguration(reader);
 		    }
 		    return null;
 		}
